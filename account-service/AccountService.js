@@ -33,8 +33,8 @@ export default class AccountService {
         return fetch('http://localhost:3000/api/v1/token/verify', { method: 'GET', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 
                 'Authorization': `Bearer ${_token}` } })
             .then((_response) => { return _response.json(); })
-            .then((_json) => { 
-                if(_json.hasOwnProperty('status')) { if(_json.status == 401) { return false; } }
+            .then((_json) => {
+                if(_json.hasOwnProperty('status') && _json.status !== "success") { return false; }
                 else if(_json.hasOwnProperty('status')) { if(_json.status == "success") { return true; } }
             }).catch((_error) => { console.log(_error); });     
     }
@@ -43,8 +43,8 @@ export default class AccountService {
         return fetch('http://localhost:3000/api/v1/account/profile', { method: 'GET', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 
                 'Authorization': `Bearer ${_token}` } })
             .then((_response) => { return _response.json(); })
-            .then((_json) => { console.log(_json);
-                if(_json.hasOwnProperty('status')) { if(_json.status == 401) { return { success: false, message: _json }; } }
+            .then((_json) => { 
+                if(_json.hasOwnProperty('status') && _json.status !== "success") { return { success: false, message: _json }; }
                 else if(_json.hasOwnProperty('status')) { if(_json.status == "success") { return { success: true, message: _json }; } }
             }).catch((_error) => { console.log(_error); }); 
     }
