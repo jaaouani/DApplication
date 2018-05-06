@@ -35,7 +35,7 @@ export default class RegisterActivity extends Component<Props> {
             this.setState({ validated: true });
             AccountService.registerAccount(this.state.fullnameI, this.state.emailI, this.state.passwordI).then((_result) => {
                 if(_result.status == "success") { 
-                    AccountService.loginAccount(this.state.emailI, this.state.passwordI).then((_result) => {
+                    AccountService.loginAccount(this.state.emailI, this.state.passwordI).then((_result) => { 
                         if(_result.status == "success") {  AsyncStorage.setItem('token', _result.token); navigate('AccountOn');
                         } else if(_result.status == "error") { this.setState({ validated: false });  this.showErrorBox(_result.message); } }); 
                 } else if(_result.status == "error") { this.setState({ validated: false });  this.showErrorBox(_result.message); }

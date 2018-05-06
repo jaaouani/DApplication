@@ -30,26 +30,20 @@ export default class AccountService {
     }
 
     static verifyAccountToken(_token) {
-        return fetch('http://localhost:3000/api/v1/token/verify', { method: 'GET', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 
+        return fetch('http://localhost:3000/api/v1/account/token/verify', { method: 'GET', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 
                 'Authorization': `Bearer ${_token}` } })
             .then((_response) => { return _response.json(); })
-            .then((_json) => {
-                if(_json.hasOwnProperty('status') && _json.status !== "success") { return false; }
-                else if(_json.hasOwnProperty('status')) { if(_json.status == "success") { return true; } }
-            }).catch((_error) => { console.log(_error); });     
+            .catch((_error) => { console.log(_error); });     
     }
 
     static retrieveAccount(_token) {
         return fetch('http://localhost:3000/api/v1/account/profile', { method: 'GET', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 
                 'Authorization': `Bearer ${_token}` } })
             .then((_response) => { return _response.json(); })
-            .then((_json) => { 
-                if(_json.hasOwnProperty('status') && _json.status !== "success") { return { success: false, message: _json }; }
-                else if(_json.hasOwnProperty('status')) { if(_json.status == "success") { return { success: true, message: _json }; } }
-            }).catch((_error) => { console.log(_error); }); 
+            .catch((_error) => { console.log(_error); }); 
     }
 
-    static storeAccount(_user) { 
+    static storeAccount(_user) {
         AsyncStorage.setItem('fullname', _user.fullname).then(() => { AsyncStorage.setItem('email', _user.email).then(() => {
             AsyncStorage.setItem('reference', _user.reference).then(() => { AsyncStorage.setItem('points', _user.points.toString()).then(() => {
                 AsyncStorage.setItem('userToken', _user.token).then(() => { AsyncStorage.setItem('updatedAt', _user.updatedAt).then(() => {
