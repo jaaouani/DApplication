@@ -18,9 +18,7 @@ export default class ProfileFragment extends Component<Props> {
 
     validateFullname = () => {
         if(this.state.nF.length >= 3) { 
-            if(this.props.submitF(this.state.nF) == true) {
-                this.props.closeF();
-            } else if(this.props.submitF(this.state.nF) == false) { Toast.show({ text: 'Impossible de changer de nom.', buttonText: 'Compris', position: 'top', textStyle: { color: "#FFFFFF" }, type: "danger", duration: 3000 } ); this.props.closeF(); }
+            this.props.submitF(this.state.nF);
         } else { Toast.show({ text: 'Il faut au moins 3 caractères.', buttonText: 'Compris', position: 'top', textStyle: { color: "#FFFFFF" }, type: "danger", duration: 3000 } ); }
     }
     render() {
@@ -41,7 +39,7 @@ export default class ProfileFragment extends Component<Props> {
                     <View style={styles.modalContainer}>
                         <View style={styles.modalView}>
                             <View style={styles.errorView}>
-                                <TextInput tyle={styles.fInput} placeholder="Nom Complet" placeholderTextColor="#1F3A93" underlineColorAndroid={'transparent'} autoCapitalize={'none'} 
+                                <TextInput tyle={styles.fInput} placeholder="Insérer Nom Complet" placeholderTextColor="#1F3A93" underlineColorAndroid={'transparent'} autoCapitalize={'none'} 
                                     autoCorrect={false} onChangeText={ (t) => { this.setState({ nF: t }); } }/>
                                 <TouchableOpacity onPress={this.props.closeF}><Image source={require('../assets/drawable/icons8-delete-512.png')} style={styles.errorClose}/></TouchableOpacity>
                                 <TouchableOpacity onPress={this.validateFullname}><Image source={require('../assets/drawable/icons8-edit-512.png')} style={styles.submitF} /></TouchableOpacity>
@@ -63,7 +61,7 @@ const styles = StyleSheet.create({
     iconSetting: { width: 22, height: 22, position: 'relative', },
     modalFullname: { position: 'absolute', top: height / 3, height: height / 3},
     modalContainer: { flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', },
-    modalView: { width: width - 25, height: 50, backgroundColor: '#FFFFFF', borderColor: '#DCDDE1', borderWidth: 1, borderRadius: 10, position: 'absolute', top: 40, justifyContent: 'center', alignItems: 'center', },
+    modalView: { width: width - 25, height: 50, backgroundColor: '#FFFFFF', borderColor: '#DCDDE1', borderWidth: 1, borderRadius: 10, position: 'absolute', top: 60, justifyContent: 'center', alignItems: 'center', },
     errorView: { flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', },
     errorClose: { width: 25, height: 25, position: 'relative', right: -85 },
     submitF: { width: 25, height: 25, position: 'relative', right: -25 },

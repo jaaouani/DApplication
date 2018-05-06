@@ -50,8 +50,8 @@ export default class ProfileActivity extends Component<Props> {
                 AccountService.retrieveAccount(_result.message).then((_response) => {
                     if(_response.status == "success") {
                           ProfileService.updateFullname(_result.message, text).then((_result) => {
-                                if(_result.hasOwnProperty('status') && _result.status == "success") { return true; } 
-                               else { return false; }
+                                if(_result.hasOwnProperty('status') && _result.status == "success") { this.closeFullnameBox(); } 
+                               else { Toast.show({ text: 'Impossible de changer de nom.', buttonText: 'Compris', position: 'top', textStyle: { color: "#FFFFFF" }, type: "danger", duration: 3000 } ); this.props.closeFullnameBox(); }
                           });
                     } else { console.log("Changement de nom échoué."); return false;}
                 }); 
