@@ -49,7 +49,9 @@ export default class AccountService {
                 AsyncStorage.setItem('userToken', _user.token).then(() => { AsyncStorage.setItem('updatedAt', _user.updatedAt).then(() => {
                     AsyncStorage.setItem('createdAt', _user.createdAt).then(() => { AsyncStorage.setItem('address', _user.address).then(() => {
                         AsyncStorage.setItem('city', _user.city).then(() => { AsyncStorage.setItem('zipcode', _user.zipcode.toString()).then(() => {
-                            AsyncStorage.setItem('phone', _user.phone).then(() => { console.log("Sauvegarde réussi."); });
+                            AsyncStorage.setItem('phone', _user.phone).then(() => {AsyncStorage.setItem('address2', _user.address2).then(() => { 
+                                console.log("Sauvegarde réussi."); 
+                            }); });
                         }); });
                     }); });
                 }); });

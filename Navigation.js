@@ -25,7 +25,7 @@ export const _accountNavigation = TabNavigator({
     Profile : { screen : ProfileActivity },
     List : { screen : ListActivity },
     LogOut : { screen : LogOutActivity }
-}, { animationEnabled: true, swipeEnabled: true, tabBarOptions: { style: { height: 50, borderTopWidth: 0, borderTopColor: '#FFFFFF', backgroundColor: '#FFFFFF', paddingTop: 5 }, labelStyle: { color: '#1F3A93', fontFamily: 'Nunito-ExtraBold' },
+}, { animationEnabled: true, swipeEnabled: true, initialRouteName: 'List', tabBarOptions: { style: { height: 50, borderTopWidth: 0, borderTopColor: '#FFFFFF', backgroundColor: '#FFFFFF', paddingTop: 5 }, labelStyle: { color: '#1F3A93', fontFamily: 'Nunito-ExtraBold' },
      tabStyle : { backgroundColor: '#FFFFFF' } }, inactiveBackgroundColor: '#FFFFFF', activeBackgroundColor: '#FFFFFF' });
 
 const _switchNavigation = SwitchNavigator({

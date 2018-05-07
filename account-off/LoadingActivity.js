@@ -20,8 +20,9 @@ export default class LoadingActivity extends Component<Props> {
                 .then((_result) => {
                     if(_result.status == true) {  // verifying expire date. console.
                             AccountService.verifyAccountToken(_result.message)
-                                    .then((_result) => {
-                                        if(_result.status == "success") { navigate('AccountOn'); }
+                                    .then((_result) => { console.log(_result);
+                                        if(_result == undefined) { navigate('AccountOff'); }
+                                        else if(_result.status == "success") { navigate('AccountOn'); }
                                         else { navigate('AccountOff'); }
                                     });
                     } else if(_result.status == false) { navigate('AccountOff'); }
